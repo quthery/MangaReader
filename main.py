@@ -3,14 +3,19 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
-from database import create_manga
+from database import Mangadb
 import os
 import shutil
 import zipfile
 
+db = Mangadb()
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory='static'), name="static")
+
+@app.get("/", response_class=HTMLResponse,)
+async def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/manga/{manga_folder}", response_class=HTMLResponse)
 async def read_manga_page(request: Request, manga_folder: str):
@@ -37,8 +42,15 @@ async def add_manga(manga_name: str, manga_folder: str, preview: str, desc: str,
         zip_ref.extractall(manga_folder_path)
 
     
-    manga_id = create_manga(manga_name=manga_name, pages_number=pages_number, manga_folder=manga_folder, desc=desc, preview=preview)
+    await db.create_manga(manga_name=manga_name, pages_number=pages_number, manga_folder=manga_folder, desc=desc, preview=preview)
 
-    return {"message": "Manga added successfully.", "manga_id": manga_id}
+    return {"message": "Manga added successfully."}
+
+@app.get("/get_all")
+async def get_all(request: Request):
+    mangas = await db.get_all_mangas()
+    
+    return {f"{mangas}"}
+    
 
 
