@@ -1,8 +1,12 @@
-from fastapi import FastAPI, Request
+from fastapi import UploadFile, File, HTTPException, FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+from database import create_manga
+import os
+import shutil
+import zipfile
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -16,3 +20,25 @@ async def read_manga_page(request: Request, manga_folder: str):
         "manga_page.html",
         {"request": request, "manga_folder": manga_folder, "manga_images": pages_number},
     )
+    
+@app.post("/manga/add/{manga_name}/{manga_folder}/{preview}/{desc}/{pages_number}")
+async def add_manga(manga_name: str, manga_folder: str, preview: str, desc: str, pages_number: int, file: UploadFile = File(...)):
+    
+    if not file.filename.endswith(".zip"):
+        raise HTTPException(status_code=400, detail="Uploaded file is not a zip archive.")
+
+    
+    manga_folder_path = os.path.join("static", manga_name)
+    if not os.path.exists(manga_folder_path):
+        os.makedirs(manga_folder_path)
+
+    
+    with zipfile.ZipFile(file.file, "r") as zip_ref:
+        zip_ref.extractall(manga_folder_path)
+
+    
+    manga_id = create_manga(manga_name=manga_name, pages_number=pages_number, manga_folder=manga_folder, desc=desc, preview=preview)
+
+    return {"message": "Manga added successfully.", "manga_id": manga_id}
+
+
