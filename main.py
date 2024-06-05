@@ -1,17 +1,24 @@
 from fastapi import UploadFile, File, HTTPException, FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse, PlainTextResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 import os
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/")
-def main():
-    return RedirectResponse("http://localhost:3000/")
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/manga/{manga_folder}", response_class=HTMLResponse)
 async def read_manga_page(request: Request, manga_folder: str):

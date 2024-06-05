@@ -1,0 +1,12 @@
+.ancorNav {
+    color: white;
+
+    font-size: 20px;
+
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.ancorNav:hover {
+    color: white;
+}
