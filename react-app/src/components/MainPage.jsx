@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import NavPanel from './NavPanel.jsx';
 import BodyPanel from './BodyPanel.jsx';
 import './styles/MainPage.css'

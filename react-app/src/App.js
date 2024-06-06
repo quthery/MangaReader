@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import MainPage from './components/MainPage.jsx';
+import MangaReadPage from './components/MangaReadPage.jsx';
 import { Routes, Route, Link } from 'react-router-dom';
 
 function App(){
@@ -8,6 +8,7 @@ function App(){
         <>
             <Routes>
                 <Route path='/' element={<MainPage/>} />
+                <Route path='/readmanga/manga/:id' element={<MangaReadPage/>} />
             </Routes>
         </>
     )};
