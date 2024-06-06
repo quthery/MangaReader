@@ -5,7 +5,6 @@ from pathlib import Path
 import os
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates")
 
 origins = [
     "http://localhost:3000",
