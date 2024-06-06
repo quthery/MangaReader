@@ -1,21 +1,12 @@
-<style>
-.command {
-    background-color: gray;
-    padding: 4px 8px;
-    border-radius: 2px;
-    font-size: 18px;
-    color: rgb(33, 33, 33);
-}
-</style>
 <h1>Как развернуть проект</h1>
 <h2>1. Клонировать репозиторий</h2>
 <h4>
     Переходим в каталог где будем разворачивать<br />наш репозиторий,
     и прописываем следующию команду.
 </h4>
-<span class="command">
+<h5>
     git clone https://github.com/quthery/MangaReader.git
-</span>
+</h5>
 <h2>2. Установить зависимости/библиотеки</h2>
 <h4>
     Открываем терминал в папке с проектом.
@@ -29,36 +20,36 @@
 <h3>
     Если Windows
 </h3>
-<span class="command">
+<h5>
     python -m venv .venv
-</span>
+</h5>
 <h4>
     Включаем виртуальное окружение для питона
 </h4>
-<span class="command">
+<h5>
     .venv\Scripts\activate
-</span>
+</h5>
 <h3>
     Если Linux/Mac
 </h3>
-<span class="command">
+<h5>
     python3 -m venv .venv
-</span>
+</h5>
 <h4>
     Включаем виртуальное окружение для питона
 </h4>
-<span class="command">
+<h5>
     source .venv/bin/activate
-</span>
+</h5>
 <h3>
     2.2.Установка библиотек питона
 </h3>
 <h4>
     Прописываем команду для установки зависимостей
 </h4>
-<span class="command">
+<h5>
     pip install fastapi uvicorn
-</span>
+</h5>
 <h3>
     2.3.Установка библиотек js
 </h3>
@@ -68,15 +59,15 @@
 <h4>
     Устанавливаем библиотеки
 </h4>
-<span class="command">
+<h5>
     npm i react
-</span><br/><br/>
-<span class="command">
+</h5>
+<h5>
     npm i axios
-</span><br/><br/>
-<span class="command">
+</h5>
+<h5>
     npm i react-router-dom
-</span>
+</h5>
 <h2>3. Запуск проекта</h2>
 <h4>
     Открываем терминал, и вводим команду
@@ -84,15 +75,15 @@
 <h3>
     Если Windows
 </h3>
-<span class="command">
+<h5>
     python main.py
-</span>
+</h5>
 <h3>
     Если Linux/Mac
 </h3>
-<span class="command">
+<h5>
     python3 main.py
-</span>
+</h5>
 <h4>
     Теперь открываем второй терминал<br/>
     в том же репозитории
@@ -100,15 +91,15 @@
 <h4>
     Заходим в папку react-app<br/>
 </h4>
-<span class="command">
+<h5>
     cd react-app
-</span>
+</h5>
 <h4>
     Включаем react<br/>
 </h4>
-<span class="command">
+<h5>
     npm run start
-</span>
+</h5>
 <h4>
     После этого у вас автоматически должен<br/>
     был быть открыться браузер со страницей
