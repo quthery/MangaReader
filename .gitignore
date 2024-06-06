@@ -1,5 +1,8 @@
+.venv/
+node-modules/
+
 /favicon.ico
 /manga.zip
 /my.pdf
-/venv
+
 /__pycache__
