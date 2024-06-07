@@ -1,5 +1,5 @@
 import React from 'react';
-import AncorNav from './UI/ancors/AncorNav.jsx';
+import AncorNav from '../../UI/ancors/AncorNav.jsx';
 
 function NavPanel() {
     return (
@@ -9,12 +9,12 @@ function NavPanel() {
                     <div>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <AncorNav href="http://localhost:3000/">
+                                <AncorNav href="/">
                                     MangaDB🌟
                                 </AncorNav>
                             </li>
                             <li className="nav-item">
-                                <AncorNav href="http://localhost:3000/">
+                                <AncorNav href="/readmanga">
                                     Читать
                                 </AncorNav>
                             </li>

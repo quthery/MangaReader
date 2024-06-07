@@ -7,7 +7,7 @@ class Mangadb:
         cluster = AsyncIOMotorClient("mongodb+srv://lox:aboba228@cluster0.hiz9roq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
         cl = cluster.Qqy.users
 
-    async def create_manga(self, manga_name: str, pages_number: int, manga_folder: str, desc: str, preview: str):      
+    async def create_manga(self, manga_name: str, pages_number: int, manga_folder: str, desc: str, preview: str):
         pattern = {
             "_id": random.randrange(0, 1000000),
             "_name": manga_name,
@@ -22,19 +22,5 @@ class Mangadb:
     async def get_all_mangas(self):
         mangas = []
         async for manga in self.cl.find({}):
-            mangas.append(manga)        
+            mangas.append(manga)
         return mangas
-    
-
-
-
-
-
-   
-        
-
-
-
-            
-
-
