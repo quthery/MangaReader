@@ -3,9 +3,9 @@ import classes from './AncorNav.module.css'
 import { Link } from 'react-router-dom';
 
 
-function AncorNav({href, ...props}) {
+function AncorNav(props) {
     return (
-        <Link className={classes.ancorNav} href={href}>
+        <Link className={classes.ancorNav} to={props.href}>
             {props.children}
         </Link>
     );
