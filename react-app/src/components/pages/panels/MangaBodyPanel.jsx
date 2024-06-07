@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/MainPage.css';
 import FilterPanel from './FilterPanel.jsx';
+import MangasPanel from './MangasPanel.jsx';
 import axios from 'axios';
 
 function MangaBodyPanel(props) {
-    function showMangas(mangas){
-        console.log(mangas)
-    }
+    const [mangas, setMangas] = useState([])
 
     axios.get('http://127.0.0.1:8000/get_all')
     .then(r => {
-        showMangas(r.data['Все манги'][0])
+        setMangas(r.data['Все манги'])
     });
 
     return (
         <div className='body-panel'>
             <FilterPanel></FilterPanel>
+            <MangasPanel mangasList={mangas}></MangasPanel>
         </div>
     );
 }
