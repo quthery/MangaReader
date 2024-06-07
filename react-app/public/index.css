@@ -1,4 +1,25 @@
 body {
-    background-color: black;
-    /* background-image: url(https://c.wallhere.com/photos/e3/ba/simple_background_selective_coloring_black_background_dark_background_anime_girls-2137603.jpg!d); */
+    margin: 0px;
+    padding: 0px;
+}
+
+.bg-image {
+    position: fixed;
+
+    top: -50%;
+    left: -50%;
+    
+    width: 200%;
+    height: 200%;
+}
+
+.bg-image > img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
 }
