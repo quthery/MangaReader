@@ -1,0 +1,63 @@
+body {
+    background-image: url(https://c.wallhere.com/photos/e3/ba/simple_background_selective_coloring_black_background_dark_background_anime_girls-2137603.jpg!d);
+    background-size: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    --height-nav-panel: 62px;
+}
+
+#root {
+    color: rgb(255, 255, 255);
+}
+
+.body-panel {
+    display: flex;
+    position: absolute;
+
+    width: 950px;
+
+
+    color: white;
+    font-family: Impact;
+    font-size: 30px;
+    justify-content: center;
+
+    top: var(--height-nav-panel);
+    height: calc(100% - var(--height-nav-panel));
+
+    left: 50%;
+    transform: translate(-50%,0%);
+
+    background-color: rgba(130, 130, 130, 0.15);
+
+    /* padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 40px;
+    padding-bottom: 40px; */
+
+    padding: 10px 5px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.body-panel::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    width: auto;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.nav-panel {
+    width: 100%;
+    height: var(--height-nav-panel);
+}

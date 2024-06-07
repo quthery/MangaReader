@@ -1,7 +1,7 @@
 import React from 'react';
-import NavPanel from './NavPanel.jsx';
-import BodyPanel from './BodyPanel.jsx';
-import './styles/MainPage.css'
+import './panels/styles/MainPage.css';
+import BodyPanel from './panels/BodyPanel.jsx';
+import NavPanel from './panels/NavPanel.jsx';
 
 function MainPage() {
     return (
