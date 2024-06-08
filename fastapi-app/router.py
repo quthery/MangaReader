@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Body
 from fastapi.responses import FileResponse
 from repository import MangaRepository
+from pathlib import Path
 
 router = APIRouter()
 
@@ -16,6 +17,12 @@ async def get_all_mangas():
     mangas = await MangaRepository.get_all()
     return {"allMangas": mangas}
 
-@router.get("/getMangePage/{id}")
-async def read_manga_page(id: str):
-    return FileResponse(f'static/manga/{id}.jpeg')
+@router.get("/{mangaName}/{id}")
+async def read_manga_page(id: str, mangaName: str):
+    return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
+
+# @router.get("/getCountOfPages/{mangaName}")
+# async def read_manga_page(mangaName: str):
+#     print(mangaName)
+#     manga = f'static/mangas/{mangaName}'
+#     return {"data":len(list(manga.iterdir()))}

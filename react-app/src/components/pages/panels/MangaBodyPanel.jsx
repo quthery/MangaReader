@@ -25,7 +25,7 @@ function MangaBodyPanel(props) {
         // .catch(error => {
         //     console.log(error);
         // });
-    }, []);
+    }, [setMangas]);
 
     return (
         <div className='body-panel'>

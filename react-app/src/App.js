@@ -10,7 +10,7 @@ function App(){
             <Routes>
                 <Route path='/' element={<MainPage/>} />
                 <Route path='/readmanga' element={<MangaSearchPage/>} />
-                <Route path='/readmanga/manga/:id' element={<MangaReadPage/>} />
+                <Route path='/readmanga/:mangaName/read' element={<MangaReadPage/>} />
             </Routes>
         </>
     )};
