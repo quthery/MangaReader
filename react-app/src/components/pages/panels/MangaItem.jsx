@@ -15,7 +15,7 @@ const MangaItem = props => {
                 <button><span>Перейти к чтению</span></button>
             </div>
             <div className='desc'>
-                <span>{`Описание: ${props.manga.desc}`}</span>
+                <span>{`Описание: ${(props.manga.desc).slice(0,340)}`}</span>
             </div>
         </div>
     </div> );
