@@ -18,15 +18,13 @@ async def get_all_mangas():
     mangas = await MangaRepository.get_all()
     return {"allMangas": mangas}
 
-@router.get("/getMangePage/{id}")
-async def read_manga_page(id: str):
-    return FileResponse(f'static/manga/{id}.jpeg')
+@router.get("/{mangaName}/{id}")
+async def read_manga_page(id: str, mangaName: str):
+    return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
 
-@router.get("/manga_all_pages")
-async def all_pages(mangaPath: str):
-    folder_path = path.abspath(mangaPath)
+@router.post("/manga_all_pages")
+async def all_pages(data = Body()):
+    print(data)
+    folder_path = path.abspath(f'static/mangas/{data["mangaName"]}')
     folder = Path(folder_path)
-    if folder.is_dir():
-        return {"All files": len(list(folder.iterdir()))}
-    else:
-        return {"It is not folder?": "Yes"}
+    return {"All files": len(list(folder.iterdir()))}

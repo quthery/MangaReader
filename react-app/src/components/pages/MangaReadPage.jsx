@@ -8,10 +8,12 @@ function MangaReadPage() {
 
     document.querySelector('.bg-image').innerHTML = ''
 
-    // axios.get(`http://127.0.0.1:8000/getCountOfPages/${name}`)
-    // .then(r => {
-    //     console.log(r.data)
-    // });
+    axios.post(`http://127.0.0.1:8000/manga_all_pages`,{
+        'mangaName':name
+    })
+    .then(r => {
+        localStorage.setItem('countOfPages', r.data["All files"])
+    });
 
     function changePage(ev){
         if (ev.key === 'ArrowLeft'){
@@ -20,7 +22,9 @@ function MangaReadPage() {
             }
         }
         if (ev.key === 'ArrowRight'){
-            setPageId(pageId+1)
+            if ((pageId + 2) < localStorage.getItem('countOfPages')){
+                setPageId(pageId+1)
+            }
         }
     }
 
