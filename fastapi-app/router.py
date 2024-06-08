@@ -28,3 +28,5 @@ async def all_pages(mangaPath: str):
     folder = Path(folder_path)
     if folder.is_dir():
         return {"All files": len(list(folder.iterdir()))}
+    else:
+        return {"It is not folder?": "Yes"}
