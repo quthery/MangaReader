@@ -23,9 +23,8 @@ async def read_manga_page(id: str):
     return FileResponse(f'static/manga/{id}.jpeg')
 
 @router.get("/manga_all_pages")
-async def all_pages(mangaPath):
+async def all_pages(mangaPath: str):
     folder_path = path.abspath(mangaPath)
     folder = Path(folder_path)
-    print(folder)
     if folder.is_dir():
         return {"All files": len(list(folder.iterdir()))}
