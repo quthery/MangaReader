@@ -1,6 +1,10 @@
+
 from fastapi import APIRouter, Body
 from fastapi.responses import FileResponse
 from repository import MangaRepository
+from pathlib import Path
+import os
+
 
 router = APIRouter()
 
@@ -19,3 +23,28 @@ async def get_all_mangas():
 @router.get("/getMangePage/{id}")
 async def read_manga_page(id: str):
     return FileResponse(f'static/manga/{id}.jpeg')
+
+@router.get("/manga_all_pages")
+async def all_pages(mangaPath: str):
+    folder_path = os.path.abspath(mangaPath)
+    folder = Path(folder_path)
+    if folder.is_dir():
+        return {"All files": len(list(folder.iterdir()))}
+    else:
+        return {"It is not folder?": "Yes"}
+    
+@router.get("/getManga")
+async def get_manga(mangaName:str):
+    manga = await MangaRepository.get_manga(mangaName)
+    return {"manga": manga}
+
+
+@router.get("/get_path_of_manga")
+async def get_manga(mangaName:str):
+    manga = await MangaRepository.get_manga(mangaName)
+    return {"path": manga.path}
+
+
+
+
+

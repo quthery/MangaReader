@@ -1,7 +1,7 @@
 from database import new_session, MangaORM
 from sqlalchemy import select
-import asyncio
 
+from sqlalchemy.engine import Result
 
 class MangaRepository:
     @classmethod
@@ -22,5 +22,16 @@ class MangaRepository:
             result = await session.execute(query)
             task_models = result.scalars().all()
             return task_models
+
+    #он работает ураааа
+    @classmethod
+    async def get_manga(cls, MangaName:str):
+        async with new_session() as session:
+            stmt = select(MangaORM).where(MangaORM.name == MangaName)
+            result: Result = await session.execute(stmt)
+            manga = result.scalar_one_or_none()
+            return manga
         
+            
+
 
