@@ -24,7 +24,7 @@ async def read_manga_page(id: str, mangaName: str):
 
 @router.post("/manga_all_pages")
 async def all_pages(data = Body()):
-    folder_path = os.path.abspath(f"static/mangas/{data["mangaName"]}")
+    folder_path = os.path.abspath(f"static/mangas/{data['mangaName']}")
     folder = Path(folder_path)
     if folder.is_dir():
         return {"All files": len(list(folder.iterdir()))}
