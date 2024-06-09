@@ -5,9 +5,9 @@ from sqlalchemy.engine import Result
 
 class MangaRepository:
     @classmethod
-    async def add_one(cls,name, desc, path, coverPath):
+    async def add_one(cls,name, desc, path, coverPath, CountOfPages):
         async with new_session() as session:
-            manga = MangaORM(name=name, desc=desc, path=path, coverPath=coverPath)
+            manga = MangaORM(name=name, desc=desc, path=path, coverPath=coverPath, CountOfPages=CountOfPages)
             session.add(manga)
             await session.flush()
             await session.commit()
