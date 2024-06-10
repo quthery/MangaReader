@@ -15,7 +15,7 @@ async def add_manga(data = Body()):
 
 
 
-@router.post("/create_manga_test")
+@router.post("/create_manga_test") 
 async def add_manga_test(Cover: UploadFile, CounOfPages, name , desc, path):
     added = await MangaRepository.add_one(name=name, desc=desc, path=path,CountOfPages=CounOfPages, 
                                           coverPath="static/covers/"+Cover.filename)
@@ -45,3 +45,8 @@ async def all_pages(data = Body()):
         return {"All files": len(list(folder.iterdir()))}
     else:
         return {"It is not folder?": "Yes"}
+#этоне работает если чо
+@router.get("/get_manga_name_by_id")
+async def get_manga_by_id(id: int):
+    manga = MangaRepository.by_id(id=id)
+    return {"manga": manga}

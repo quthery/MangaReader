@@ -32,6 +32,14 @@ class MangaRepository:
             manga = result.scalar_one_or_none()
             return manga
         
+    @classmethod
+    async def by_id(cls, id:int):
+        async with new_session() as session:
+            stmt = select(MangaORM).where(MangaORM.id == id)
+            result: Result = await session.execute(stmt)
+            manga = result.scalar_one_or_none()
+            return manga
+        
             
 
 
