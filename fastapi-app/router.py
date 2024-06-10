@@ -11,16 +11,17 @@ router = APIRouter()
 @router.post("/create_manga")
 async def add_manga(data = Body()):
     added = await MangaRepository.add_one(name=data['name'], desc=data['desc'], path=data['path'],CountOfPages=data['CountOfPages'], coverPath=data['coverPath'])
-    return {"200?": True, "Manga_id": added}
+    return {"200?": True, "Manga_id": added}    
 
 
 
 @router.post("/create_manga_test")
 async def add_manga_test(Cover: UploadFile, CounOfPages, name , desc, path):
-    added = await MangaRepository.add_one(name=name, desc=desc, path=path,CountOfPages=CounOfPages, coverPath="static/covers/"+Cover.filename)
-    async with aiofiles.open("static/covers/"+Cover.filename, 'wb') as out_file:
+    added = await MangaRepository.add_one(name=name, desc=desc, path=path,CountOfPages=CounOfPages, 
+                                          coverPath="static/covers/"+Cover.filename)
+    async with aiofiles.open("static/covers/"+Cover.filename, 'wb') as file:
         content = await Cover.read() 
-        await out_file.write(content)
+        await file.write(content)
     return {"200?": True, "Manga_id": added}
 
 
@@ -31,7 +32,10 @@ async def get_all_mangas():
 
 @router.get("/{mangaName}/{id}")
 async def read_manga_page(id: str, mangaName: str):
-    return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
+    try:
+        return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
+    except:
+        return {"Manga is ended!": 404}
 
 @router.post("/manga_all_pages")
 async def all_pages(data = Body()):
