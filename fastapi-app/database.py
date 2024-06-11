@@ -21,6 +21,8 @@ class MangaORM(Model):
     coverPath: Mapped[str] = mapped_column(nullable=False)
     CountOfPages: Mapped[int]= mapped_column(nullable=False)
     path: Mapped[str]
+
+
     
 
 async def create_tables():
