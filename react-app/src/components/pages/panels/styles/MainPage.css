@@ -11,7 +11,7 @@ body {
     display: flex;
     position: absolute;
 
-    width: 1650px;
+    width: 92%;
 
 
     color: white;
@@ -81,12 +81,19 @@ body {
     outline: 1px solid rgb(151, 151, 151);
     border-radius: 8px;
 
-    width: 100%;
+    --width-manga-item: 100%;
+    width: var(--width-manga-item);
     --width-info: 73%;
     --height-info: 180px;
     height: calc(var(--height-info) + 8px);
 
     padding: 4px;
+}
+
+.manga-item:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.375);
+    mix-blend-mode: color;
 }
 
 .manga-item-cover {
@@ -144,7 +151,7 @@ body {
     font-size: 15px;
 }
 
-.title > button {
+/* .title > button {
     display: flex;
     background-color: rgb(85, 85, 85);
 
@@ -166,7 +173,7 @@ body {
     font-size: 12px;
 
     color: white;
-}
+} */
 
 .desc {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -229,3 +236,4 @@ body {
     height: 20px;
     width: 20px;
 }
+
