@@ -19,6 +19,7 @@ class MangaORM(Model):
     name: Mapped[str] = mapped_column()
     desc: Mapped[str] = mapped_column(nullable=True)
     coverPath: Mapped[str] = mapped_column(nullable=False)
+    CountOfPages: Mapped[int]= mapped_column(nullable=False)
     path: Mapped[str]
     
 
