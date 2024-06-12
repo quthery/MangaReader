@@ -50,7 +50,7 @@ body {
 
 .cover {
     margin: 4px;
-
+    margin-top: 0px;
 
 
     /* margin-top: calc(var(--height-nav-panel) - 50px); */
@@ -61,14 +61,27 @@ body {
 .cover > img{
     border: 2px solid black;
     border-radius: 6px;
-    height: 860px;
+    height: 830px;
+}
+.cover > button{
+    border: 2px solid black;
+    border-radius: 6px;
+    width: 100%;
 }
 
 .info-manga {
-    display: grid;
-    grid-template-columns: 860px calc(var(--width-body-panel) - 860px);
+    display: flex;
+    flex-direction: row;
 }
 
 .title-name {
-    background-color: aqua;
+    background-color: rgb(55, 53, 53);
+    border: 2px rgb(136, 136, 134) solid;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.info {
+    width: 100%;
+
 }
