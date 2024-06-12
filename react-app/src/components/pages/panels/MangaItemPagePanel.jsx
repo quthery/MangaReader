@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function MangaItemPagePanel() {
     const navigate = useNavigate()
@@ -15,17 +16,19 @@ function MangaItemPagePanel() {
     }
 
     function getDescription(){
-        axios.get('http://127.0.0.1:8000/get_all')
+        axios.post('http://127.0.0.1:8000/find_manga',{
+            MangaName:name
+        })
         .then(r => {
-            setCurrentManga(r.data['allMangas'])
-            console.log(r.data['allMangas'])
+            console.log(r.data['manga'])
+            localStorage.setItem('description', r.data['manga']['desc'])
         });
     }
 
     return ( <div className='body-panel'>
         <div className='info-manga'>
             <div className='cover'>
-                <img src={`http://127.0.0.1:8000/${name}/1`} className='cover-img'></img>
+                <img src={`http://localhost:8000/get_cover/?MangaName=${name}`} className='cover-img'></img>
                 <button onClick={() => {goToRead()}}>Читать</button>
             </div>
             <div className='info'>
@@ -33,7 +36,13 @@ function MangaItemPagePanel() {
                     {getTitleName()}
                 </div>
                 <div className='description'>
-                    {getDescription()}
+                    <div className='desc-title'>
+                        Описание
+                    </div>
+                    <div className='desc-info'>
+                        {getDescription()}
+                        {localStorage.getItem('description')}
+                    </div>
                 </div>
             </div>
         </div>

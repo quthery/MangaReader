@@ -83,5 +83,23 @@ body {
 
 .info {
     width: 100%;
+}
 
+.description {
+    margin-top: 3px;
+    background-color: rgb(55, 53, 53);
+    border: 2px rgb(87, 87, 85) solid;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.description > .desc-title {
+    background-color: rgb(87, 85, 85);
+    font-size: 30px;
+}
+
+.description > .desc-info {
+    padding: 4px 6px;
+    text-align: start;
+    font-size: 25px;
 }

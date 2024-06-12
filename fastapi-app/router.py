@@ -64,13 +64,13 @@ async def find_by_id(id:int):
     return {"manga": manga}
 
 
-@router.get("/get_cover")
+@router.get("/get_cover/")
 async def get_cover_manga(MangaName:str):
     manga = await MangaRepository.get_manga(MangaName)
     mangacover = manga.coverPath
     return FileResponse(mangacover)
 
-@router.get("/find_manga")
-async def get_manga_by_name(MangaName:str):
-    manga = await MangaRepository.get_manga(MangaName)
+@router.post("/find_manga")
+async def get_manga_by_name(data = Body()):
+    manga = await MangaRepository.get_manga(data['MangaName'])
     return {"manga": manga}
