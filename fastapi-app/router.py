@@ -69,3 +69,8 @@ async def get_cover_manga(MangaName:str):
     manga = await MangaRepository.get_manga(MangaName)
     mangacover = manga.coverPath
     return FileResponse(mangacover)
+
+@router.get("/find_manga")
+async def get_manga_by_name(MangaName:str):
+    manga = await MangaRepository.get(MangaName)
+    return {"manga": manga}
