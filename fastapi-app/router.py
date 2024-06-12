@@ -1,76 +1,68 @@
 from fastapi import APIRouter, Body, UploadFile
 from fastapi.responses import FileResponse
 from repository import MangaRepository
+from mongo import Mangadb
+from pydantic import BaseModel
 from pathlib import Path
 import aiofiles
 import os
 
 router = APIRouter()
-
+db = Mangadb()
 
 @router.post("/create_manga")
 async def add_manga(data = Body()):
-    added = await MangaRepository.add_one(name=data['name'], desc=data['desc'], path=data['path'],CountOfPages=data['CountOfPages'], coverPath=data['coverPath'])
+    added = await db.create_manga(name=data['name'], desc=data['desc'], path=data['path'],CountOfPages=data['CountOfPages'], coverPath=data['coverPath'])
     return {"200?": True, "Manga_id": added}
 
 
 
 @router.post("/create_manga_test")
-async def add_manga_test(Cover: UploadFile, CounOfPages, name , desc, path):
-    added = await MangaRepository.add_one(name=name, desc=desc, path=path,CountOfPages=CounOfPages, coverPath="static/covers/"+Cover.filename)
-    async with aiofiles.open("static/covers/"+Cover.filename, 'wb') as out_file:
-        content = await Cover.read()
+async def add_manga_test(Cover: UploadFile, name , desc):
+    folder_path = os.path.abspath(f"static/mangas/{name}")
+    folder = Path(folder_path)
+    added = await db.create_manga(name=name, desc=desc, path="static/mangas/"+name,CountOfPages=len(list(folder.iterdir()))-1, 
+                                  coverPath=f"static/mangas/{name}/cover.png")
+    async with aiofiles.open(f"static/mangas/{name}/cover.png", 'wb') as out_file:
+        content = await Cover.read() 
         await out_file.write(content)
     return {"200?": True, "Manga_id": added}
 
 
 @router.get("/get_all")
-async def get_all_mangas():
-    mangas = await MangaRepository.get_all()
+async def all():
+    mangas = await db.get_all_mangas()
     return {"allMangas": mangas}
 
 @router.get("/{mangaName}/{id}")
 async def read_manga_page(id: str, mangaName: str):
     return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
 
-@router.post("/manga_all_pages")
-async def all_pages(data = Body()):
-    folder_path = os.path.abspath(f"static/mangas/{data['mangaName']}")
+@router.get("/manga_all_pages")
+async def all_pages(mangaName:str):
+    folder_path = os.path.abspath(f"static/mangas/{mangaName}")
     folder = Path(folder_path)
     if folder.is_dir():
-        return {"All files": len(list(folder.iterdir()))}
+        return {"pages": len(list(folder.iterdir()))}
     else:
-        return {"It is not folder?": "Yes"}
+        return "isnt folder!"
 
-@router.get("/find_manga_path")
-async def getMangaByName(MangaName:str):
-    manga = await MangaRepository.get_manga(MangaName)
-    return {"manga": manga.path}
-
-
-@router.get("/find_manga_path")
-async def getMangaByName(MangaName:str):
-    manga = await MangaRepository.get_manga(MangaName)
-    return {"manga": manga.path}
-
-@router.get("/find_manga_coverPath")
-async def getMangaByName(MangaName:str):
-    manga = await MangaRepository.get_manga(MangaName)
-    return {"manga": manga.coverPath}
 
 @router.get("/find_manga_by_id")
 async def find_by_id(id:int):
-    manga = await MangaRepository.by_id(id)
-    return {"manga": manga}
+    return {"manga": await db.manga_by_id(id=id)}
 
 
-@router.get("/get_cover/")
+@router.get("/get_cover")
 async def get_cover_manga(MangaName:str):
-    manga = await MangaRepository.get_manga(MangaName)
-    mangacover = manga.coverPath
-    return FileResponse(mangacover)
+    prewiew = await db.find_one(name=MangaName)
+    return FileResponse(prewiew['coverPath'])
 
-@router.post("/find_manga")
-async def get_manga_by_name(data = Body()):
-    manga = await MangaRepository.get_manga(data['MangaName'])
-    return {"manga": manga}
+@router.get("/find_manga")
+async def get_manga_by_name(MangaName:str):
+    return {"manga": await db.find_one(name=MangaName)}
+
+
+@router.get("/get_all_by_name")
+async def all_one(MangaName:str):
+    return {"mangas": await db.find_all_one(name=MangaName)}
