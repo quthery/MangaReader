@@ -5,7 +5,7 @@ const MangaItem = props => {
     const navigate = useNavigate()
 
     function navigationToReadPage(name){
-        navigate(`${name}/read`)
+        navigate(`${name}/page`)
     }
 
     return (
@@ -15,7 +15,7 @@ const MangaItem = props => {
         </div>
         <div className='manga-item-info'>
             <div className='title'>
-                <span >Название: {props.manga.name}</span>
+                <span >Название: {(props.manga.name).slice(0,30)}</span>
             </div>
             <div className='desc'>
                 <span>{`Описание: ${(props.manga.desc).slice(0,288)}`}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import AncorNav from '../../UI/ancors/AncorNav.jsx';
+import './styles/MainPage.css';
 
 function NavPanel() {
     return (

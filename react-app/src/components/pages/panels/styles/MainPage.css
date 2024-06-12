@@ -1,6 +1,7 @@
 body {
     --height-nav-panel: 62px;
-    --width-monitor: width;
+    margin: 0px;
+    padding: 0px;
 }
 
 #root {

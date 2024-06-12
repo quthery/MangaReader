@@ -1,0 +1,74 @@
+body {
+    --height-nav-panel: 62px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#root {
+    color: rgb(255, 255, 255);
+}
+
+.body-panel {
+    display: flex;
+    position: absolute;
+
+    --width-body-panel: 92%;
+    width: var(--width-body-panel);
+
+
+    color: white;
+    font-family: Impact;
+    font-size: 30px;
+    justify-content: center;
+    flex-direction: column;
+
+    top: var(--height-nav-panel);
+    height: calc(100% - var(--height-nav-panel));
+
+    left: 50%;
+    transform: translate(-50%,0%);
+
+    background-color: rgba(130, 130, 130, 0.15);
+
+    /* padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 40px;
+    padding-bottom: 40px; */
+
+    padding: 30px 5px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.body-panel::-webkit-scrollbar {
+    display: none;
+}
+
+.cover {
+    margin: 4px;
+
+
+
+    /* margin-top: calc(var(--height-nav-panel) - 50px); */
+    /* хз почему -40px но он работает поэтому все окей */
+    /* крч этот код когда был нужен, я оставил просто потому что почему бы и нет */
+}
+
+.cover > img{
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 860px;
+}
+
+.info-manga {
+    display: grid;
+    grid-template-columns: 860px calc(var(--width-body-panel) - 860px);
+}
+
+.title-name {
+    background-color: aqua;
+}
