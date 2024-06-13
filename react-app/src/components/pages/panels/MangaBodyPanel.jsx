@@ -11,7 +11,7 @@ function MangaBodyPanel(props) {
         axios.get('http://127.0.0.1:8000/get_all')
         .then(r => {
             setMangas(r.data['allMangas'])
-            console.log(r.data['allMangas'])
+            // console.log(r.data['allMangas'])
         });
         // axios.post('http://127.0.0.1:8000/create_manga', {
         //     name: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente magnam voluptas dolores quidem nulla perferendis inventore ea quae aliquid iusto?',

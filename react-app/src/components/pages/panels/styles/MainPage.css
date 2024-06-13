@@ -88,13 +88,16 @@ body {
     --height-info: 180px;
     height: calc(var(--height-info) + 8px);
 
+    transition: 0.1s;
+
     padding: 4px;
 }
 
 .manga-item:hover {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.375);
-    mix-blend-mode: color;
+    /* background: rgba(255, 255, 255, 0.375); */
+    transform: scale(1.012);
+    /* mix-blend-mode: color; */
 }
 
 .manga-item-cover {

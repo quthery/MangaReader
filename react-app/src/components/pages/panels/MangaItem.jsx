@@ -1,15 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 
 const MangaItem = props => {
-    const navigate = useNavigate()
-
-    function navigationToReadPage(name){
-        navigate(`${name}/page`)
-    }
-
     return (
-    <div className='manga-item' onClick={() => navigationToReadPage(props.manga.name)}>
+    <div className='manga-item' onClick={() => props.navigateTo(props.manga.name)}>
         <div className='manga-item-cover'>
             <img src='http://127.0.0.1:8000/jujika/1' alt='page manga'></img>
         </div>
