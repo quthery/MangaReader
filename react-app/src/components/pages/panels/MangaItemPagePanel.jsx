@@ -16,9 +16,7 @@ function MangaItemPagePanel() {
     }
 
     function getDescription(){
-        axios.post('http://127.0.0.1:8000/find_manga',{
-            MangaName:name
-        })
+        axios.get(`http://127.0.0.1:8000/find_manga?MangaName=${name}`)
         .then(r => {
             console.log(r.data['manga'])
             localStorage.setItem('description', r.data['manga']['desc'])
