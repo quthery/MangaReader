@@ -43,7 +43,7 @@ async def all_pages(mangaName:str):
     folder_path = os.path.abspath(f"static/mangas/{mangaName}")
     folder = Path(folder_path)
     if folder.is_dir():
-        return {"pages": len(list(folder.iterdir()))}
+        return {"countOfPages": len(list(folder.iterdir()))}
     else:
         return "isnt folder!"
 
@@ -66,3 +66,18 @@ async def get_manga_by_name(MangaName:str):
 @router.get("/get_all_by_name")
 async def all_one(MangaName:str):
     return {"mangas": await db.find_all_one(name=MangaName)}
+
+@router.get("/get_all_mangas_pg")
+async def all_one(numberOfPage:int,countMangas:int):
+    allMangas = await db.get_all_mangas()
+    mangasByPagination = [[]]
+    
+    for i in range(0,len(allMangas)):
+        if i % countMangas == 0 and i != 0:
+            mangasByPagination.append([])
+        mangasByPagination[-1].append(allMangas[i])
+    
+    if numberOfPage >= len(mangasByPagination):
+        return {"mangas": ['PageCountError']}
+    else:
+        return {"mangas": mangasByPagination[numberOfPage],"totalyCount": (len(mangasByPagination) - 1)}

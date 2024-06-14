@@ -8,11 +8,9 @@ function MangaReadPage() {
 
     document.querySelector('.bg-image').innerHTML = ''
 
-    axios.post(`http://127.0.0.1:8000/manga_all_pages`,{
-        'mangaName':name
-    })
+    axios.get(`http://127.0.0.1:8000/manga_all_pages?mangaName=${name}`)
     .then(r => {
-        localStorage.setItem('countOfPages', r.data["All files"])
+        localStorage.setItem('countOfPages', r.data["countOfPages"])
     });
 
     function updatePageNumber(npg){
