@@ -5,10 +5,10 @@ import './panels/styles/MangaItemPage.css';
 
 
 function MangaItemPage() {
-    return ( <div>
+    return ( <>
         <NavPanel></NavPanel>
         <MangaItemPagePanel></MangaItemPagePanel>
-    </div>);
+    </>);
 }
 
 export default MangaItemPage;

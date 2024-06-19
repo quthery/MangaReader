@@ -16,7 +16,6 @@ function FilterPanel() {
             <img src="https://cdn-icons-png.flaticon.com/512/54/54785.png"/>
             `
             document.querySelector('.filter-panel').style.minHeight = `400px`
-            document.querySelector('.filter-panel').style.marginTop = `360px`
             setIsHide(true)
         }
     }

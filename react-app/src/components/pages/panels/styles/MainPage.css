@@ -18,7 +18,6 @@ body {
     color: white;
     font-family: Impact;
     font-size: 30px;
-    justify-content: center;
     flex-direction: column;
 
     top: var(--height-nav-panel);
@@ -27,14 +26,15 @@ body {
     left: 50%;
     transform: translate(-50%,0%);
 
-    background-color: rgba(130, 130, 130, 0.15);
+    background-color: rgba(73, 96, 96, 0.049);
+
 
     /* padding-right: 12px;
     padding-left: 12px;
     padding-top: 40px;
     padding-bottom: 40px; */
 
-    padding: 30px 5px;
+    padding: 5px;
 
     margin-right: auto;
     margin-left: auto;
@@ -240,4 +240,3 @@ body {
     height: 20px;
     width: 20px;
 }
-

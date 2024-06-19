@@ -18,8 +18,7 @@ function MangaItemPagePanel() {
     function getDescription(){
         axios.get(`http://127.0.0.1:8000/find_manga?MangaName=${name}`)
         .then(r => {
-            console.log(r.data['manga'])
-            localStorage.setItem('description', r.data['manga']['desc'])
+            localStorage.setItem('description', (r.data['manga']['desc']).slice(0,2030))
         });
     }
 
@@ -27,16 +26,13 @@ function MangaItemPagePanel() {
         <div className='info-manga'>
             <div className='cover'>
                 <img src={`http://localhost:8000/get_cover/?MangaName=${name}`} className='cover-img'></img>
-                <button onClick={() => {goToRead()}}>Читать</button>
+                <button onClick={() => {goToRead()}}>ЧИТАТЬ</button>
             </div>
             <div className='info'>
                 <div className='title-name'>
                     {getTitleName()}
                 </div>
                 <div className='description'>
-                    <div className='desc-title'>
-                        Описание
-                    </div>
                     <div className='desc-info'>
                         {getDescription()}
                         {localStorage.getItem('description')}

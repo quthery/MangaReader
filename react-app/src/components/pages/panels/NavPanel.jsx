@@ -4,7 +4,7 @@ import './styles/MainPage.css';
 
 function NavPanel() {
     return (
-        <div className='nav-panel'>
+        <nav className='nav-panel'>
             <div className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: "#272727"}}>
                 <div className="container d-flex justify-content-between align-items-center">
                     <div>
@@ -37,7 +37,7 @@ function NavPanel() {
                     <span>Имя профиля</span>
                 </div>
             </div>
-        </div>
+        </nav>
     );
 }
 
