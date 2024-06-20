@@ -1,5 +1,5 @@
 body {
-    --height-nav-panel: 62px;
+    --height-nav-panel: 50px;
     margin: 0px;
     padding: 0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,7 +13,7 @@ body {
     display: flex;
     position: absolute;
 
-    --width-body-panel: 92%;
+    --width-body-panel: 95%;
     width: var(--width-body-panel);
 
 
@@ -40,6 +40,23 @@ body {
 
 .body-panel::-webkit-scrollbar {
     display: none;
+}
+
+.nav-panel {
+    width: 100%;
+    height: var(--height-nav-panel);
+    background-color: rgb(45, 43, 41);
+    justify-content: space-between;
+    padding: 0px 40px;
+}
+
+.nav-panel-fragment > ul > li{
+    margin: 0px 20px;
+    height: 100%;
+}
+
+.nav-panel-fragment{
+    justify-content: center;
 }
 
 .cover {

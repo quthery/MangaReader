@@ -8,10 +8,10 @@ const MangaItem = props => {
         </div>
         <div className='manga-item-info'>
             <div className='title'>
-                <span >Название: {(props.manga.name).slice(0,30)}</span>
+                <span >{(props.manga.name).slice(0,30)}</span>
             </div>
             <div className='desc'>
-                <span>{`Описание: ${(props.manga.desc).slice(0,288)}`}</span>
+                <span>{`${(props.manga.desc).slice(0,519)}`}</span>
             </div>
         </div>
     </div> );
