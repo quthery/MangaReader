@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function MangaItemPagePanel() {
     const navigate = useNavigate()
-    const name = (window.location.href).split('/')[4]
+    const [name,id] = (window.location.href).split('/')[4].split('+')
     const [currentManga, setCurrentManga] = useState()
 
     function getTitleName(){
@@ -16,10 +16,9 @@ function MangaItemPagePanel() {
     }
 
     function getDescription(){
-        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${696050}`)
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${+id}`)
         .then(r => {
             localStorage.setItem('description', r.data['manga']['desc'])
-            console.log(r.data)
         });
     }
 

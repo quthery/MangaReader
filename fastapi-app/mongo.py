@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 import random
 import asyncio
-#чтобы запустить бд 
+#чтобы запустить бд
 #cd MangaReader
 #mongod --port 2000 --dbpath db
 class Mangadb:
@@ -23,10 +23,6 @@ class Mangadb:
         }
 
         result = await self.cl.insert_one(pattern)
-        
-        retrieved_document = await self.cl.find_one({"_id": result.inserted_id})
-        print(result.inserted_id)
-        print(f"Извлеченная строка: {retrieved_document['desc']}")
 
         return pattern['_id']
 
@@ -40,9 +36,6 @@ class Mangadb:
         return await self.cl.find_one({"name": name})
     
     async def manga_by_id(self, id:int):
-        retrieved_document = await self.cl.find_one({"name": id})
-        print('')
-        print(f"asdfasdfd {retrieved_document['desc']}")
         return await self.cl.find_one({"_id": id})
     
     async def find_all_one(self, name):

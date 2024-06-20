@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const MangaItem = props => {
     return (
-    <div className='manga-item' onClick={() => props.navigateTo(props.manga.name)}>
+    <div className='manga-item' onClick={() => props.navigateTo(props.manga.name, props.manga._id)}>
         <div className='manga-item-cover'>
             <img src='http://127.0.0.1:8000/jujika/1' alt='page manga'></img>
         </div>
