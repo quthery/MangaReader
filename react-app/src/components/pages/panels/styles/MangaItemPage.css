@@ -102,7 +102,7 @@ body {
 .title-name {
     background-color: rgb(55, 53, 53);
     border: 1px rgb(134, 136, 136) solid;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Rubik", sans-serif;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0px 0px 3px rgb(96, 192, 236);
@@ -112,24 +112,64 @@ body {
     width: 100%;
 }
 
-.description {
-    margin-top: 3px;
-    background-color: rgba(67, 73, 74, 0.1);
+.advanced {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags {
+    background-color: rgba(55, 53, 53, 0.805);
     border: 1px rgb(87, 87, 85) solid;
     border-radius: 12px;
+    width: 49.8%;
+    height: 100%;
+
+    margin-right: 0.1%;
+
+    text-align: center;
+}
+
+.rait {
+    background-color: rgba(55, 53, 53, 0.805);
+    border: 1px rgb(87, 87, 85) solid;
+    border-radius: 12px;
+    width: 49.8%;
+    height: 100%;
+
+    margin-left: 0.1%;
+
+    text-align: center;
+}
+
+.info-about {
+    display: flex;
+    margin-top: 1px;
+    border-radius: 12px;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+}
+
+.description {
+    margin-top: 6px;
+    margin-bottom: 1px;
+    background-color: rgba(55, 53, 53, 0.805);
+    border: 1px rgb(87, 87, 85) solid;
+    border-radius: 12px;
+    width: 100%;
+    max-height: 400px;
     text-align: center;
 }
 
 .description > .desc-title {
     background-color: rgba(130, 178, 206, 0.918);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Rubik", sans-serif;
     border-radius: 10px;
-    font-size: 30px;
 }/* ех */
 
 .description > .desc-info {
     padding: 4px 6px;
     text-align: start;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 19px;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
 }

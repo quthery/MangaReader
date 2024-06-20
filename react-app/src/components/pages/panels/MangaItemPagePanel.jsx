@@ -32,10 +32,20 @@ function MangaItemPagePanel() {
                 <div className='title-name'>
                     {getTitleName()}
                 </div>
-                <div className='description'>
-                    <div className='desc-info'>
-                        {getDescription()}
-                        {localStorage.getItem('description')}
+                <div className='advanced'>
+                    <div className='description'>
+                        <div className='desc-info'>
+                            {getDescription()}
+                            {localStorage.getItem('description')}
+                        </div>
+                    </div>
+                    <div className='info-about'>
+                        <div className='tags'>
+                            <span className='tags-title'>Теги</span>
+                        </div>
+                        <div className='rait'>
+                            <span className='rait-title'>Рейтинг</span>
+                        </div>
                     </div>
                 </div>
             </div>
