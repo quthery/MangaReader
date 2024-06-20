@@ -16,9 +16,10 @@ function MangaItemPagePanel() {
     }
 
     function getDescription(){
-        axios.get(`http://127.0.0.1:8000/find_manga?MangaName=${name}`)
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${696050}`)
         .then(r => {
-            localStorage.setItem('description', (r.data['manga']['desc']).slice(0,2030))
+            localStorage.setItem('description', r.data['manga']['desc'])
+            console.log(r.data)
         });
     }
 

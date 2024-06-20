@@ -4,7 +4,7 @@ import './styles/MainPage.css';
 
 function NavPanel() {
     return (
-        <nav className='nav-panel navbar navbar-expand-lg'>
+        <nav className='nav-panel navbar-expand-lg'>
             <div className="nav-panel-fragment">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">

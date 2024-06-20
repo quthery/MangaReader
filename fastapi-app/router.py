@@ -13,6 +13,7 @@ db = Mangadb()
 @router.post("/create_manga")
 async def add_manga(data = Body()):
     added = await db.create_manga(name=data['name'], desc=data['desc'], path=data['path'],CountOfPages=data['CountOfPages'], coverPath=data['coverPath'])
+    
     return {"200?": True, "Manga_id": added}
 
 
@@ -50,16 +51,20 @@ async def all_pages(mangaName:str):
 
 @router.get("/find_manga_by_id")
 async def find_by_id(id:int):
+    хобаБлять = await db.cl.find_one({"_id": id})
+    await db.manga_by_id(id)
+    print(хобаБлять['desc'])
     return {"manga": await db.manga_by_id(id=id)}
-
 
 @router.get("/get_cover")
 async def get_cover_manga(MangaName:str):
-    prewiew = await db.find_one(name=MangaName)
+    prewiew = await db.cl.find_one({"name": MangaName})
     return FileResponse(prewiew['coverPath'])
 
 @router.get("/find_manga")
 async def get_manga_by_name(MangaName:str):
+    хобаБлять = await db.cl.find_one({"name": MangaName})
+    print(хобаБлять['desc'])
     return {"manga": await db.find_one(name=MangaName)}
 
 

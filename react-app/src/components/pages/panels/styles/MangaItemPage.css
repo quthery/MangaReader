@@ -43,6 +43,8 @@ body {
 }
 
 .nav-panel {
+    position: relative;
+    display: flex;
     width: 100%;
     height: var(--height-nav-panel);
     background-color: rgb(45, 43, 41);
@@ -50,8 +52,22 @@ body {
     padding: 0px 40px;
 }
 
+.nav-panel-fragment > ul{
+    /* padding-top: 10px; */
+
+    height: 100%;
+}
+
 .nav-panel-fragment > ul > li{
     margin: 0px 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-panel-fragment > ul > li > a{
+    display: flex;
+    align-items: center;
     height: 100%;
 }
 
@@ -158,7 +174,27 @@ body {
     border-radius: 12px;
     width: 100%;
     max-height: 400px;
+
+    overflow-y: scroll;
+    /* scrollbar-width: thin;
+    scrollbar-color: rgb(0, 208, 255), rgba(0, 0, 0, 0); */
+
     text-align: center;
+}
+
+.description::-webkit-scrollbar {
+    width: 8px; /* Ширина всего элемента навигации */
+}
+
+.description::-webkit-scrollbar-track {
+    background: #23202000; /* Цвет дорожки */
+}
+
+.description::-webkit-scrollbar-thumb {
+    background-color: #2cbbbd; /* Цвет бегунка */
+    border-radius: 10px; /* Округление бегунка */
+    border: 2px solid #08497145; /* Оформление границ бегунка */
+    box-shadow: 0px 0px 60px rgb(15, 210, 132)
 }
 
 .description > .desc-title {

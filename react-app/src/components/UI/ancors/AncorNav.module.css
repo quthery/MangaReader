@@ -4,12 +4,13 @@
     font-size: 20px;
 
     display: block;
+
+    transition: 0.2s;
 }
 
 .ancorNav:hover {
     color: white;
-
     border-bottom: 1px solid white;
-
+    border-radius: 3px;
     text-decoration: none;
 }
