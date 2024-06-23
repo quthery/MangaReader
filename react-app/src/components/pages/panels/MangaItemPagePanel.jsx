@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function MangaItemPagePanel() {
     const navigate = useNavigate()
-    const [name,id] = (window.location.href).split('/')[4].split('+')
+    const id = (window.location.href).split('/')[4]
     const [currentManga, setCurrentManga] = useState()
+    const [name, setName] = useState('')
+    const [title, setTitle] = useState('')
+    const [desc, setDesc] = useState('')
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${+id}`)
+        .then(r => {
+            localStorage.setItem('title', r.data.manga.nameSyst)
+            setName(r.data.manga.nameSyst)
+        })
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${+id}`)
+        .then(r => {
+            localStorage.setItem('description', r.data['manga']['desc'])
+            setDesc(r.data['manga']['desc'])
+        });
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${+id}`)
+        .then(r => {
+            localStorage.setItem('description', r.data['manga']['desc'])
+            setTitle(r.data['manga']['name'])
+        });
+    }, [])
 
     function getTitleName(){
-        return name
+        axios.get(`http://127.0.0.1:8000/find_manga_by_id?id=${+id}`)
+        .then(r => {
+            localStorage.setItem('title', r.data.manga.nameSyst)
+        })
     }
 
     function goToRead(){
-        navigate(`/readmanga/${name}/read`)
+        navigate(`/readmanga/${localStorage.getItem('title')}/read`)
     }
 
     function getDescription(){
@@ -25,18 +49,19 @@ function MangaItemPagePanel() {
     return ( <div className='body-panel'>
         <div className='info-manga'>
             <div className='cover'>
-                <img src={`http://localhost:8000/get_cover/?MangaName=${name}`} className='cover-img'></img>
+                <img src={`http://localhost:8000/get_cover/?MangaName=${title}`} className='cover-img'></img>
                 <button onClick={() => {goToRead()}}>ЧИТАТЬ</button>
             </div>
             <div className='info'>
                 <div className='title-name'>
                     {getTitleName()}
+                    {name}
                 </div>
                 <div className='advanced'>
                     <div className='description'>
                         <div className='desc-info'>
                             {getDescription()}
-                            {localStorage.getItem('description')}
+                            {desc}
                         </div>
                     </div>
                     <div className='info-about'>

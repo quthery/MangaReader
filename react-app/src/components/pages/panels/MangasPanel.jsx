@@ -14,8 +14,8 @@ function MangasPanel(props) {
     },[])
 
 
-    function navigationToReadPage(name,id){
-        navigate(`${name}+${id}/page`)
+    function navigationToReadPage(id){
+        navigate(`${id}/page`)
     }
 
     return ( <div className='mangas-panel'>
