@@ -10,8 +10,10 @@ class Mangadb:
         self.cl = self.db.mangadb.db
 
     async def create_manga(self, name: str, CountOfPages: int, path: str, desc: str, coverPath: str):
+
+
         pattern = {
-            "_id": random.randrange(0, 1000000),
+            "_id": random.randint(1, 99999),
             "name": name,
             "CountOfPages": CountOfPages,
             "path": path,
@@ -22,7 +24,7 @@ class Mangadb:
             "comments": {}
         }
 
-        result = await self.cl.insert_one(pattern)
+        await self.cl.insert_one(pattern)
 
         return pattern['_id']
 

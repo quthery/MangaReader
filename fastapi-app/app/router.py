@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Body, UploadFile
 from fastapi.responses import FileResponse
-from repository import MangaRepository
-from mongo import Mangadb
-from pydantic import BaseModel
+from database.mongo import Mangadb
+from database.comments import Comdb
 from pathlib import Path
 import aiofiles
 import os
 
 router = APIRouter()
 db = Mangadb()
+comdb = Comdb()
 
 @router.post("/create_manga")
 async def add_manga(data = Body()):
@@ -22,7 +22,8 @@ async def add_manga(data = Body()):
 async def add_manga_test(Cover: UploadFile, name , desc):
     folder_path = os.path.abspath(f"static/mangas/{name}")
     folder = Path(folder_path)
-    added = await db.create_manga(name=name, desc=desc, path="static/mangas/"+name,CountOfPages=len(list(folder.iterdir()))-1, 
+    added = await db.create_manga(name=name, desc=desc, path="static/mangas/"+name,
+                                  CountOfPages=len(list(folder.iterdir()))-1,
                                   coverPath=f"static/mangas/{name}/cover.png")
     async with aiofiles.open(f"static/mangas/{name}/cover.png", 'wb') as out_file:
         content = await Cover.read() 
@@ -81,3 +82,14 @@ async def all_one(numberOfPage:int,countMangas:int):
         return {"mangas": ['PageCountError']}
     else:
         return {"mangas": mangasByPagination[numberOfPage],"totalyCount": (len(mangasByPagination) - 1)}
+
+
+@router.post("/add_comment")
+async def add_comment(MangaName:str, user: str, text:str):
+    await comdb.add_comment(MangaName, user, text)
+    return {"added?": 200}
+@router.get("/test_comment")
+async def test_comment():
+    comment = await comdb.add_comment("jujika", "quthery", "noob")
+    return {"comment": comment}
+    return comment
