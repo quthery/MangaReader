@@ -4,7 +4,7 @@ const MangaItem = props => {
     return (
     <div className='manga-item' onClick={() => props.navigateTo(props.manga._id)}>
         <div className='manga-item-cover'>
-            <img src={`http://localhost:8000/get_cover/?MangaName=${props.manga.name}`} alt='page manga'></img>
+            <img src={`http://localhost:8000/${props.manga.name}/cover`} alt='page manga'></img>
         </div>
         <div className='manga-item-info'>
             <div className='title'>

@@ -12,7 +12,7 @@ comdb = Comdb()
 
 @router.post("/create_manga")
 async def add_manga(data = Body()):
-    added = await db.create_manga(name=data['name'], desc=data['desc'], nameSyst=['nameSyst'])
+    added = await db.create_manga(name=data['name'], desc=data['desc'], nameSyst=data['nameSyst'])
     return {"200?": True, "Manga_id": added}
 
 
@@ -40,7 +40,7 @@ async def read_manga_page(id: str, mangaName: str):
     return FileResponse(f'static/mangas/{mangaName}/{id}.jpeg')
 
 @router.get("/manga_all_pages")
-async def all_pages(mangaName:str):
+async def all_pages(mangaName:str): 
     folder_path = os.path.abspath(f"static/mangas/{mangaName}")
     folder = Path(folder_path)
     if folder.is_dir():
@@ -52,11 +52,6 @@ async def all_pages(mangaName:str):
 @router.get("/find_manga_by_id")
 async def find_by_id(id:int):
     return {"manga": await db.manga_by_id(id=id)}
-
-@router.get("/get_cover")
-async def get_cover_manga(MangaName:str):
-    prewiew = await db.cl.find_one({"name": MangaName})
-    return FileResponse(prewiew['coverPath'])
 
 @router.get("/find_manga")
 async def get_manga_by_name(MangaName:str):
@@ -91,4 +86,4 @@ async def add_comment(MangaName:str, user: str, text:str):
 async def test_comment():
     comment = await comdb.add_comment("jujika", "quthery", "noob")
     return {"comment": comment}
-    return comment
+    # return comment

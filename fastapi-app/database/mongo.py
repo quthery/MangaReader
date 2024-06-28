@@ -20,9 +20,8 @@ class Mangadb:
             "name": name,
             "nameSyst": nameSyst,
             "CountOfPages": len(list(folder.iterdir()))-1,
-            "path": f"static/mangas/{name}",
+            "path": f"fastapi-app/static/mangas/{name}",
             "desc": desc,
-            "coverPath": f"static/mangas/{name}/cover.png",
             "views": 0,
             "likes": 0,
             "comments": {}

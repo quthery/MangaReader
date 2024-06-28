@@ -49,7 +49,7 @@ function MangaItemPagePanel() {
     return ( <div className='body-panel'>
         <div className='info-manga'>
             <div className='cover'>
-                <img src={`http://localhost:8000/get_cover/?MangaName=${title}`} className='cover-img'></img>
+                <img src={`http://localhost:8000/${title}/cover`} className='cover-img'></img>
                 <button onClick={() => {goToRead()}}>ЧИТАТЬ</button>
             </div>
             <div className='info'>
