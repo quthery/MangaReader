@@ -12,8 +12,7 @@ comdb = Comdb()
 
 @router.post("/create_manga")
 async def add_manga(data = Body()):
-    added = await db.create_manga(name=data['name'], desc=data['desc'], path=data['path'],CountOfPages=data['CountOfPages'], coverPath=data['coverPath'])
-    
+    added = await db.create_manga(name=data['name'], desc=data['desc'], nameSyst=['nameSyst'])
     return {"200?": True, "Manga_id": added}
 
 

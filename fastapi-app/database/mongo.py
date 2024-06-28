@@ -1,6 +1,8 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 import random
-import asyncio
+import os
+from pathlib import Path
+
 #чтобы запустить бд
 #cd MangaReader
 #mongod --port 2000 --dbpath db
@@ -9,16 +11,18 @@ class Mangadb:
         self.db = AsyncIOMotorClient("mongodb://localhost:2000")
         self.cl = self.db.mangadb.db
 
-    async def create_manga(self, name: str, CountOfPages: int, path: str, desc: str, coverPath: str):
-
-
+    async def create_manga(self, name: str, nameSyst, desc: str):
+        folder_path = os.path.abspath(f"static/mangas/{name}")
+        folder = Path(folder_path)
+        
         pattern = {
             "_id": random.randint(1, 99999),
             "name": name,
-            "CountOfPages": CountOfPages,
-            "path": path,
+            "nameSyst": nameSyst,
+            "CountOfPages": len(list(folder.iterdir()))-1,
+            "path": f"static/mangas/{name}",
             "desc": desc,
-            "coverPath": coverPath,
+            "coverPath": f"static/mangas/{name}/cover.png",
             "views": 0,
             "likes": 0,
             "comments": {}
