@@ -4,8 +4,9 @@ body {
     padding: 0px;
     background-image: url(img/sudanashakartinkablin.jpeg);
     background-position: 100% 0%;
-    background-size: 1600px 1000px;
+    background-size: 1650px 1000px;
     background-repeat: no-repeat;
+    background-color: #050505;
 }
 
 #root {

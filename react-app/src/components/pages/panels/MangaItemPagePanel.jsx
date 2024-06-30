@@ -36,7 +36,7 @@ function MangaItemPagePanel() {
     }
 
     function goToRead(){
-        navigate(`/readmanga/${localStorage.getItem('title')}/read`)
+        navigate(`/readmanga/${title}/read`)
     }
 
     function getDescription(){

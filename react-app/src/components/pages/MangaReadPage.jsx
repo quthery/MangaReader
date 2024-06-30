@@ -3,10 +3,10 @@ import axios from 'axios';
 import './panels/styles/ReadPage.css';
 
 function MangaReadPage() {
-    const [pageId,setPageId] = useState(0)
+    const [pageId,setPageId] = useState(1)
     const name = (window.location.href).split('/')[4]
 
-    document.querySelector('.bg-image').innerHTML = ''
+    // document.querySelector('.bg-image').innerHTML = ''
 
     axios.get(`http://127.0.0.1:8000/manga_all_pages?mangaName=${name}`)
     .then(r => {
@@ -19,7 +19,7 @@ function MangaReadPage() {
     }
 
     function pageMoveLeft(ev){
-        if (pageId !== 0){
+        if (pageId !== 1){
             setPageId(pageId-1)
             updatePageNumber((pageId - 1))
         }
@@ -66,10 +66,10 @@ function MangaReadPage() {
             <button
                 className='button-left'
                 onClick={ev => pageMoveLeft(ev)}>
-                <img src="https://cdn-icons-png.flaticon.com/512/54/54833.png" alt="стрелко вправо" />
+                <img src="https://cdn-icons-png.flaticon.com/512/54/54833.png" alt="стрелко влева" />
             </button>
             <div>
-                <img src={`http://127.0.0.1:8000/${name}/${pageId}`} key={'main'} alt='Страница манги'></img>
+                <img src={`http://127.0.0.1:8000/${name}/${pageId - 1}`} key={'main'} alt='Страница манги'></img>
                 <div className='page-number'>
                 </div>
             </div>
