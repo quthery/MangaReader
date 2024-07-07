@@ -1,0 +1,56 @@
+.read-page-div-panel {
+    display: flex;
+    background-color: rgb(0, 0, 0);
+
+    height: 100vw;
+}
+
+.page {
+    display: flex;
+}
+
+.page > div > img {
+    position: absolute;
+    
+    height: 100vh;
+    
+    left: 50%;
+    transform: translate(-50%,0%);
+}
+
+.button-left {
+    position: absolute;
+
+    background-color: rgba(91, 91, 91, 0.126);
+    border: 0px;
+
+    height: 100%;
+    transform: scaleX(-1);
+}
+
+.button-right {
+    position: absolute;
+
+    left: 100%;
+    transform: translate(-100%);
+
+    background-color: rgba(91, 91, 91, 0.126);
+    border: 0px;
+
+    height: 100%;
+}
+
+.button-right > img, .button-left > img{
+    width: 40%;
+    filter: invert(1);
+}
+
+.button-right:hover, .button-left:hover{
+    background-color: rgba(206, 206, 206, 0.16);
+}
+
+.page-number{
+    position: absolute;
+    mix-blend-mode: difference;
+
+}

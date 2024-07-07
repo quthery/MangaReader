@@ -1,0 +1,206 @@
+#root {
+    color: rgb(255, 255, 255);
+}
+
+.body-panel {
+    display: flex;
+    position: absolute;
+
+    --width-body-panel: 95%;
+    width: var(--width-body-panel);
+
+
+    color: white;
+    font-family: Impact;
+    font-size: 30px;
+    flex-direction: column;
+
+    top: var(--height-nav-panel);
+    height: calc(100% - var(--height-nav-panel));
+
+    left: 50%;
+    transform: translate(-50%,0%);
+
+
+    /* padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 40px;
+    padding-bottom: 40px; */
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.body-panel::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-panel {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--height-nav-panel);
+    background-color: rgb(45, 43, 41);
+    justify-content: space-between;
+    padding: 0px 40px;
+}
+
+.nav-panel-fragment > ul{
+    /* padding-top: 10px; */
+
+    height: 100%;
+}
+
+.nav-panel-fragment > ul > li{
+    margin: 0px 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-panel-fragment > ul > li > a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-panel-fragment{
+    justify-content: center;
+}
+
+.cover {
+    margin: 4px;
+    margin-top: 0px;
+
+
+    /* margin-top: calc(var(--height-nav-panel) - 50px); */
+    /* хз почему -40px но он работает поэтому все окей */
+    /* крч этот код когда был нужен, я оставил просто потому что почему бы и нет */
+}
+
+.cover > img{
+    border-radius: 10px;
+    height: 660px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.cover > button{
+    background-color: rgb(125, 211, 99);
+    border: 0px;
+    border-radius: 10px;
+    font-weight: 480;
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 6px 15px rgb(0, 0, 0);
+
+    font-family: "Rubik", sans-serif;
+    margin-top: 6px;
+    width: 100%;
+    box-shadow: 0px 0px 7px rgb(105, 236, 96);
+    transition: 0.3s;
+}
+
+.cover > button:hover{
+
+    scale: 1.01;
+}
+
+.info-manga {
+    display: flex;
+    flex-direction: row;
+}
+
+.title-name {
+    background-color: rgb(55, 53, 53);
+    border: 1px rgb(134, 136, 136) solid;
+    font-family: "Rubik", sans-serif;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 3px rgb(96, 192, 236);
+}
+
+.info {
+    width: 100%;
+}
+
+.advanced {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags {
+    background-color: rgba(55, 53, 53, 0.2);
+    border: 1px rgb(87, 87, 85) solid;
+    border-radius: 12px;
+    width: 49.8%;
+    height: 258px;
+
+    margin-right: 0.1%;
+
+    text-align: center;
+}
+
+.rait {
+    background-color: rgba(55, 53, 53, 0.2);
+    border: 1px rgb(87, 87, 85) solid;
+    border-radius: 12px;
+    width: 49.8%;
+    height: 258px;
+
+    margin-left: 0.1%;
+
+    text-align: center;
+}
+
+.info-about {
+    display: flex;
+    margin-top: 1px;
+    border-radius: 12px;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+}
+
+.description {
+    margin-top: 6px;
+    margin-bottom: 1px;
+    background-color: rgba(55, 53, 53, 0.2);
+    border: 1px rgb(87, 87, 85) solid;
+    border-radius: 12px;
+    width: 100%;
+    max-height: 400px;
+
+    overflow-y: scroll;
+    /* scrollbar-width: thin;
+    scrollbar-color: rgb(0, 208, 255), rgba(0, 0, 0, 0); */
+
+    text-align: center;
+}
+
+.description::-webkit-scrollbar {
+    width: 8px; /* Ширина всего элемента навигации */
+}
+
+.description::-webkit-scrollbar-track {
+    background: #23202000; /* Цвет дорожки */
+}
+
+.description::-webkit-scrollbar-thumb {
+    background-color: #2cbbbd; /* Цвет бегунка */
+    border-radius: 10px; /* Округление бегунка */
+    border: 2px solid #08497145; /* Оформление границ бегунка */
+    box-shadow: 0px 0px 60px rgb(15, 210, 132)
+}
+
+.description > .desc-title {
+    background-color: rgba(130, 178, 206, 0.918);
+    font-family: "Rubik", sans-serif;
+    border-radius: 10px;
+}/* ех */
+
+.description > .desc-info {
+    padding: 4px 6px;
+    text-align: start;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+}
