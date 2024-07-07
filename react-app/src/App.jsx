@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './components/pages/MainPage.jsx';
 import MangaReadPage from './components/pages/MangaReadPage.jsx';
-import MangaSearchPage from './components/pages/MangaSearchPage.jsx';
+import { MangaSearchPage } from './components/pages/MangaSearchPage.jsx';
 import MangaItemPage from './components/pages/MangaItemPage.jsx';
 import NavPanel from './components/pages/panels/NavPanel.jsx';
 
