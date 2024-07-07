@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 function MangaItemPage() {
     const navigate = useNavigate()
     const id = (window.location.href).split('/')[4]
-    const [currentManga, setCurrentManga] = useState()
     const [name, setName] = useState('')
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
