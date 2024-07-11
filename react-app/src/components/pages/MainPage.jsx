@@ -11,9 +11,11 @@ function MainPage() {
     const [inputs, setInputs] = useState([
         {
             "placeholder":"логин",
+            "id":"login",
             "type":""
         },{
             "placeholder":"пароль",
+            "id":"password",
             "type":"password"
         }
     ])
@@ -24,6 +26,7 @@ function MainPage() {
             setRegText('ВХОД')
             setInputs([...inputs, {
                 "placeholder":"повторный пароль",
+                "id":"second_password",
                 "type":"password"
             }])
         }else{
@@ -32,22 +35,14 @@ function MainPage() {
             setInputs([
                 {
                     "placeholder":"логин",
+                    "id":"login",
                     "type":""
                 },{
                     "placeholder":"пароль",
+                    "id":"password",
                     "type":"password"
                 }
             ])
-        }
-    }
-
-    function getAllData(e){
-        e.preventDefault()
-        // console.log(e)
-        const inputsElement = document.querySelector('.inputs').children
-        
-        for (let i = 0;i !== inputsElement.length;i++){
-            console.dir(inputsElement[i].value)
         }
     }
 
@@ -55,7 +50,6 @@ function MainPage() {
         <div className="body-panel">
             <SignInPanel
                 buttonText={buttonText}
-                getAllData={getAllData}
                 inputs={inputs}
                 ></SignInPanel>
             <ToRegistr toReg={toReg}>{regText}</ToRegistr>

@@ -7,6 +7,7 @@ function AncorNav(props) {
             className={classes.inputReg}
             placeholder={props.children}
             type={props.type}
+            id={props.id}
             ></input>
     );
 }

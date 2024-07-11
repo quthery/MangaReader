@@ -1,5 +1,4 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-import asyncio
 
 class Comdb:
     def __init__(self):

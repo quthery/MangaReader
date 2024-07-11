@@ -2,6 +2,7 @@ from fastapi import APIRouter, Body, UploadFile
 from fastapi.responses import FileResponse
 from database.mongo import Mangadb
 from database.comments import Comdb
+from database.users import User
 from pathlib import Path
 import aiofiles
 import os
@@ -9,6 +10,7 @@ import os
 router = APIRouter()
 db = Mangadb()
 comdb = Comdb()
+user = User()
 
 @router.post("/create_manga")
 async def add_manga(data = Body()):
@@ -82,8 +84,20 @@ async def all_one(numberOfPage:int,countMangas:int):
 async def add_comment(MangaName:str, user: str, text:str):
     await comdb.add_comment(MangaName, user, text)
     return {"added?": 200}
+
 @router.get("/test_comment")
 async def test_comment():
     comment = await comdb.add_comment("jujika", "quthery", "noob")
     return {"comment": comment}
     # return comment
+    
+@router.post("/signin")# кто ета читает, тот гей
+async def sing_in(data = Body()):
+    print(data)
+    return {"norm": 200}
+
+@router.post("/signup")# кто ета читает, тот гей
+async def sing_in(data = Body()):
+    print(data)
+    user.add_user(data["login"], data["password"])
+    return {"norm": 200}
