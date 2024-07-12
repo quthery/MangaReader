@@ -3,26 +3,32 @@ import InputRegPanel from './../../UI/inputs/InputRegPanel'
 import axios from 'axios'
 
 function SignInPanel(props) {
-    async function getAllData(e){
+     async function getAllData(e){
         e.preventDefault()
         const inputsElement = document.querySelector('.inputs').children
+        let exit = false
 
         if (inputsElement.length === 3){
             if (inputsElement.password.value !== inputsElement.second_password.value && inputsElement.password.value !== ''){
                 console.log('ты еблан')
                 return 0
             }
-            localStorage.setItem('login', inputsElement.login.value)
-            localStorage.setItem('password', inputsElement.password.value)
-            axios.post('http://127.0.0.1:8000/signup', {
+            await axios.post('http://127.0.0.1:8000/signup', {
                 'login': inputsElement.login.value,
                 'password': inputsElement.password.value,
                 'second_password': inputsElement.second_password.value,
             }).then(r => {
                 console.log(r.data)
+                if (r.data.response === 'thisuseralreadyexists'){
+                    exit = true
+                    return 0;
+                }
+
+                localStorage.setItem('login', inputsElement.login.value)
+                localStorage.setItem('password', inputsElement.password.value)
             })
         } else if (inputsElement.length === 2){
-            axios.post('http://127.0.0.1:8000/signin', {
+            await axios.post('http://127.0.0.1:8000/signin', {
                 'login': inputsElement.login.value,
                 'password': inputsElement.password.value,
             }).then(r => {
@@ -30,7 +36,7 @@ function SignInPanel(props) {
             })
         }
 
-
+        if (exit) return 0;
         for (let i = 0;i !== inputsElement.length;i++){
             inputsElement[i].value = ''
         }

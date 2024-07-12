@@ -3,8 +3,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 class User:
     def __init__(self):
         self.db = AsyncIOMotorClient("mongodb://localhost:2000")
-        self.cl = self.db.mangadb.comments
-        self.cl1 = self.db.mangadb.db
+        self.cl = self.db.mangadb.users
 
     async def add_user(self, login: str, password: str):
         pattern = {
@@ -14,6 +13,15 @@ class User:
         }
 
         await self.cl.insert_one(pattern)
-        await self.cl1.update_one({"name": manga_name}, {"$set": {"comments": await self.get_all_by_name(manga_name)}})
 
         return pattern
+    
+    async def get_users(self):
+        users = []
+        async for manga in self.cl.find({}):
+            users.append(manga)
+
+        return users
+    
+    async def get_user(self, login, password):
+        return await self.cl.find_one({"login": login, "password":password})

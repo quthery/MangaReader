@@ -93,11 +93,18 @@ async def test_comment():
     
 @router.post("/signin")# кто ета читает, тот гей
 async def sing_in(data = Body()):
-    print(data)
-    return {"norm": 200}
+    print(await user.get_user(login=data['login'], password=data["password"]))
+    return {"norm": (await user.get_user(login=data['login'], password=data["password"]))}
 
 @router.post("/signup")# кто ета читает, тот гей
-async def sing_in(data = Body()):
+async def sing_up(data = Body()):
     print(data)
-    user.add_user(data["login"], data["password"])
+    if (await user.get_user(login=data['login'], password=data["password"])):
+        return {'response':'thisuseralreadyexists'}
+    await user.add_user(data["login"], data["password"])
     return {"norm": 200}
+
+@router.get("/get_users")
+async def sing_up():
+    users = await user.get_users()
+    return {"norm": users}
